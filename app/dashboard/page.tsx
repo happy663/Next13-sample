@@ -4,7 +4,7 @@ type Article = {
 };
 
 async function getArticle(): Promise<Article[]> {
-  const res = await fetch('hoge');
+  const res = await fetch('https://qiita.com/api/v2/items?page=1&per_page=24');
 
   return res.json();
 }
@@ -20,7 +20,10 @@ export default async function DashBoardPage() {
           display: 'flex',
           flexDirection: 'column',
           flexWrap: 'wrap',
-          height: '50vh',
+          height: '80vh',
+          overflow: 'auto',
+          justifyContent: 'space-between',
+          alignItems: 'center',
         }}
       >
         {articles?.map((article) => (
@@ -28,7 +31,6 @@ export default async function DashBoardPage() {
             key={article.id}
             style={{
               display: 'flex',
-              gap: '10px',
             }}
           >
             <p>{article.title}</p>
